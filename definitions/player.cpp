@@ -174,26 +174,47 @@ void Player::team_beat(){
 			p2.write<bool>(1);
 			p2.write<int>(0);
 			
-			p2.write<unsigned char>((unsigned char)a->site);
-			p2.write<int>(a->credits);
-			p2.write<int>(a->team);
-			p2.write<bool>(1);
-			if(a->isAdmin)
-				p2.write(a->name+" (Admin)");
-			else 
-				p2.write(a->name);
-			p2.write<bool>(1);
-			p2.write<int>(a->ping);
-			p2.write<long long>(t1.tv_sec*1000+t1.tv_usec/1000);
-			p2.write<bool>(0);
-			p2.write<int>(0);
-			p2.write<int>(a->site);
-			p2.write<char>(0);
-			p2.write<bool>(0);
-			p2.write<bool>(0);
-			p2.write<bool>(0);
-			p2.write<bool>(0);
-			p2.write<int>(-9999);
+			if(room.is_gaming){
+				p2.write<unsigned char>((unsigned char)a->site);
+				p2.write<int>(ping);
+				//controlable
+				p2.write<bool>(controlable);
+				p2.write<bool>(sharedControl);
+			}else{
+				p2.write<unsigned char>((unsigned char)a->site);
+				p2.write<int>(a->credits);
+				p2.write<int>(a->team);
+				if(a->isAdmin)
+					p2.write(a->name+" (Admin)");
+				else 
+					p2.write(a->name);
+				p2.write<bool>(0);
+				p2.write<int>(a->ping);
+				p2.write<long long>(t1.tv_sec*1000+t1.tv_usec/1000);
+				p2.write<bool>(0);
+				p2.write<int>(0);
+				p2.write<int>(a->site);
+				p2.write<char>(0);
+				
+				p2.write<bool>(room.sharedControl);
+				p2.write<bool>(sharedControl);
+				p2.write<bool>(0);
+				p2.write<bool>(0);
+				p2.write<int>(-9999);
+
+				p2.write<bool>(0);
+				// 延迟后显示 （HOST)
+				p2.write<int>(0);
+				// Ai Difficulty Override
+				p2.write<int>(1);
+				// Player Start Unit
+				p2.write<int>(startUnit);
+				p2.write<int>(0);
+				p2.write<int>(color);
+				p2.write<int>(0);
+			}
+
+			
 			
 		}
 		p.write_Gzip("teams",p2);
@@ -203,7 +224,7 @@ void Player::team_beat(){
 		p.write<bool>(1);
 		//ai dificuty
 		p.write<int>(1);
-		p.write<char>(4);
+		p.write<char>(5);
 		p.write<int>(room.maxUnit);
 		p.write<int>(room.maxUnit);
 		//init unit

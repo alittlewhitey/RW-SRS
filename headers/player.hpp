@@ -37,7 +37,7 @@ public:
 	long long receive_time = 0;
 	bool is_alive = 1;
 
-
+	// -1 ==> N/A   -2 ==> -   -99 ==> HOST
 	int ping = 10;
 	unsigned int ID = 0;
 	Room& room;
@@ -56,6 +56,10 @@ public:
 	int site = -1;
 	int team = 1;
 	int credits = 4000;
+	bool controlable = 1;
+	bool sharedControl = 1;
+	int startUnit = 1;
+	int color = 0;
 	std::string name = "unnamed";
 
 

@@ -31,5 +31,8 @@ constexpr int v1_3 = 136;
 constexpr int v1_4 = 151;
 constexpr int v1_5 = 176;
 
+int initUnit = 1;
+int initMist = 2;
+
 
 #endif // !SRS_PROGRAMVAR
