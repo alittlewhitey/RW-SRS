@@ -24,9 +24,7 @@
 #define SRS_PACKET
 // #include<codecvt>
 // #include<locale>
-#include<boost/asio.hpp>
-#include<boost/locale.hpp>
-#include<string>
+
 enum PacketType{
     //Server Commands
     PACKET_REGISTER_CONNECTION = 161,

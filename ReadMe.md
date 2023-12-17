@@ -33,3 +33,14 @@ Boost使用BSL协议开源
 #### cpp-httplib
 cpp_httplib是一个header-only的c++ http api库，使用MIT协议开源
 仓库地址：https://github.com/yhirose/cpp-httplib
+
+#### zlib
+zlib是一个压缩程序，能够压缩字符串，使用zlib协议开源
+仓库地址：https://github.com/madler/zlib
+官网：https://www.zlib.net/
+软件包：zlib1g , zlib1g-dev
+
+#### gzip-hpp
+额。。。。是All rights reserved的
+总之
+仓库地址：https://github.com/mapbox/gzip-hpp

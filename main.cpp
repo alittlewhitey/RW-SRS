@@ -20,12 +20,6 @@
 
 #include"including.hpp"
 
-#include<boost/asio.hpp>
-#include<vector>
-#include<thread>
-#include<string>
-#include<iostream>
-
 using namespace std;
 using namespace boost::asio;
 using boost::asio::ip::tcp;

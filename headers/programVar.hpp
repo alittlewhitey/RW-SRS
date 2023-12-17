@@ -23,8 +23,6 @@
 
 #ifndef SRS_PROGRAMVAR
 #define SRS_PROGRAMVAR
-#include<boost/asio.hpp>
-#include<fstream>
 
 bool program_is_run = 1;
 std::ofstream err("exceptions.log");

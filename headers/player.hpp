@@ -21,37 +21,14 @@
 #pragma once
 
 
-#include"packet.hpp"
-#include"room.hpp"
-#include "programVar.hpp"
-
 #ifndef SRS_PLAYER
 #define SRS_PLAYER
 
-#include<boost/asio.hpp>
-#include<string>
-#include<vector>
-#include<thread>
-#include<iostream>
-#include<random>
-//linux header
-//#include<sys/timeb.h>
 
 struct Room;
 class Player{
 	static unsigned int IDcounter;
 public:
-
-	//用于游戏的数据
-
-	bool isAdmin = 0;
-	bool isNull = 1;
-	bool isRandy = 0;
-	int site = -1;
-	int team = 1;
-	int credits = 4000;
-	std::string name = "unnamed";
-
 
 	//用于程序的数据
 	const static int heart_beat_times_max = 30;
@@ -69,6 +46,19 @@ public:
 
 	std::jthread heart_beat_thread;
 	std::jthread team_beat_thread;
+
+
+	//用于游戏的数据
+
+	bool isAdmin = 0;
+	bool isNull = 1;
+	bool isRandy = 0;
+	int site = -1;
+	int team = 1;
+	int credits = 4000;
+	std::string name = "unnamed";
+
+
 	
 	Player(boost::asio::ip::tcp::socket& sock,Room& room);
 	~Player();

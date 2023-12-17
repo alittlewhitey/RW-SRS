@@ -23,14 +23,6 @@
 #ifndef SRS_OPEN
 #define SRS_OPEN
 
-#include <string>
-#include <iostream>
-#include <stdexcept>
-#include <random>
-#include <sstream>
-#include <iomanip>
-#include "md5.h"
-#include "../dependency/cpp_httpapi/httplib.h"
 
 //const std::string USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36";
 

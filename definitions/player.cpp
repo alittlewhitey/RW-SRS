@@ -21,11 +21,11 @@
 #pragma once
 #include"../headers/player.hpp"
 
-Player::Player(boost::asio::ip::tcp::socket& sock,Room& room):sock(sock),ep(sock.remote_endpoint()),room(room),heart_beat_thread(std::jthread([this](){this->heart_beat();})),team_beat_thread(std::jthread([this](){this->heart_beat();})){
+Player::Player(boost::asio::ip::tcp::socket& sock,Room& room):sock(sock),ep(sock.remote_endpoint()),room(room),heart_beat_thread(std::jthread([this](){this->heart_beat();})),team_beat_thread(std::jthread([this](){this->team_beat();})),site(room.getVoidSite()){
 	this->ID = IDcounter;
 	++IDcounter;
 	heart_beat_thread.detach();
-	// team_beat_thread.detach();
+	team_beat_thread.detach();
 }
 Player::~Player(){
 	if(heart_beat_thread.request_stop()){
@@ -104,8 +104,6 @@ bool Player::getPlayerInfo(IPacket& ipac){//TODO:
 		ipac.read<int>();
 		std::string name = ipac.read();
 		this->name = name;
-		this->site = room.getVoidSite();
-		std::cout << name << std::endl;
 		if(room.players.size() >= room.maxPlayer){
 			sendKick("服务器已满");
 			is_alive = 0;
@@ -133,7 +131,6 @@ void Player::heart_beat(){
 	try{
 	while(room.is_run&is_alive){
 		if(heart_beat_times > heart_beat_times_max){
-			std::cout << "out of heart beat " << ID << std::endl;
 			is_alive = 0;
 		}
 		heart_beat_times ++;
@@ -224,6 +221,13 @@ void Player::team_beat(){
 
 		p.type = PACKET_TEAM_LIST;
 
+		std::string s = p.pData.data;
+		std::cout << std::hex;
+		for(int i = 0;i!=s.size();++i){
+			std::cout << (unsigned int)(unsigned char)(s[i]) << ' ';
+		}
+		std::cout << std::endl;
+
 		sock << p;
 
 		sleep(5);
@@ -296,11 +300,8 @@ void Player::registerConnect(IPacket& ipac){
 	static std::random_device rd;
 	static std::mt19937 gen(rd());
 	static std::uniform_int_distribution<int> distrib(0,89999);
-	//TODO: 写一个自己的输出类
-	std::cout << "Client Package Name: " << ipac.read() << std::endl;
 	ipac.read<int>();
 	int version = ipac.read<int>();
-	std::cout << "Client Version: " << version << std::endl;
 	ipac.read<int>();
 
 	OPacket p;
@@ -374,7 +375,7 @@ void Player::run(){
 		p.type = (PacketType)p.read<int>();
 
 	//test
-		std::cout << "Receive  type: " << (int)p.type << "\tsize: " << p.size << std::endl;
+		//std::cout << "Receive  type: " << (int)p.type << "\tsize: " << p.size << std::endl;
 
 		handlePacket(p.type,p);
 	}

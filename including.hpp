@@ -20,6 +20,22 @@
 
 #pragma once 
 
+#include<iostream>
+#include<fstream>
+#include<sstream>
+#include<vector>
+#include<map>
+#include<string>
+#include<random>
+#include<memory>
+#include<thread>
+#include<boost/asio.hpp>
+
+
+#include"dependency/cpp_httpapi/httplib.h"
+#include"dependency/gzip/compress.hpp"
+
+#include"headers/md5.h"
 #include"headers/open.hpp"
 #include"headers/programVar.hpp"
 #include"headers/packet.hpp"

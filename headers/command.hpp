@@ -20,11 +20,6 @@
 
 #pragma once
 
-#include"player.hpp"
-#include"room.hpp"
-#include"programVar.hpp"
-#include<sstream>
-#include<map>
 #ifndef SRS_COMMAND
 #define SRS_COMMAND
 

@@ -25,11 +25,6 @@
 #ifndef SRS_SERVER
 #define SRS_SERVER
 
-#include"../headers/room.hpp"
-#include<vector>
-#include<map>
-#include<string>
-#include<memory>
 
 
 struct Server{

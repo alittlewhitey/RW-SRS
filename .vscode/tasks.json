@@ -12,7 +12,8 @@
                 "-std=c++2a",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-lz"
             ],
             "options": {
                 "cwd": "${fileDirname}"
