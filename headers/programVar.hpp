@@ -25,7 +25,7 @@
 #define SRS_PROGRAMVAR
 
 bool program_is_run = 1;
-std::ofstream err("exceptions.log");
+std::ofstream err("errors.log");
 boost::asio::io_context ioc;
 constexpr int v1_3 = 136;
 constexpr int v1_4 = 151;

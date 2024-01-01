@@ -90,6 +90,17 @@ void OPacket::write_Gzip(const std::string& key,const OPacket& data){
 	}
 
 }
+
+void OPacket::write_data(const char* data,size_t size){
+	for(int i =0;i!=size;++i){
+		this->write<char>(data[i]);
+	}
+}
+void OPacket::write_data(const std::string& data){
+	for(auto a : data){
+		this->write<char>(a);
+	}
+}
 void operator<<(boost::asio::ip::tcp::socket& sock,const OPacket& p){
 
 	try{	
@@ -100,10 +111,10 @@ void operator<<(boost::asio::ip::tcp::socket& sock,const OPacket& p){
 			p2.write<char> (p.pData.data[i]);
 		}
 		if(sock.is_open()){
-			//std::cout << "Send  type: " << (int)p.type << "\tsize: " << p.size << std::endl;
+			std::cout << "Send  type: " << (int)p.type << "\tsize: " << p.size << std::endl;
 			sock.send(boost::asio::buffer(p2.pData.data));
 		}
-		//std::cout << std::endl;
+		std::cout << std::endl;
 	}catch(boost::system::system_error e){
 		err << __FILE__ << '\t' << __LINE__ << '\t' << e.what() << std::endl;
 	}

@@ -76,7 +76,7 @@ const Player* Room::find_site(unsigned int site){
 }
 int Room::getVoidSite(){
 	int result = -1;
-	for(int i = maxPlayer;i != 0;--i){
+	for(int i = maxPlayer-1;i != -1;--i){
 		for(auto& a : players){
 			if(a->site != i)
 				break;

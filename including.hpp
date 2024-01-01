@@ -29,6 +29,7 @@
 #include<random>
 #include<memory>
 #include<thread>
+#include<unistd.h>
 #include<boost/asio.hpp>
 
 

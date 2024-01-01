@@ -41,6 +41,7 @@ zlib是一个压缩程序，能够压缩字符串，使用zlib协议开源
 软件包：zlib1g , zlib1g-dev
 
 #### gzip-hpp
-额。。。。是All rights reserved的
+额。。。。是All rights reserved的，不过在LICENSE中提供了授权，具体请看
+dependency/gzip/LICENSE.md
 总之
 仓库地址：https://github.com/mapbox/gzip-hpp

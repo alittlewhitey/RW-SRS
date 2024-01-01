@@ -86,6 +86,8 @@ struct OPacket :public Packet{
 	//自带写入字符串大小
 	void write(const std::string& str);
 	void write_Gzip(const std::string& key,const OPacket& data);
+	void write_data(const char*,size_t);
+	void write_data(const std::string&);
 	friend void operator<<(const boost::asio::ip::tcp::socket& sock,const OPacket& p);
 	OPacket(){};
 };

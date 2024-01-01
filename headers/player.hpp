@@ -36,9 +36,12 @@ public:
 	long long send_time = 0;
 	long long receive_time = 0;
 	bool is_alive = 1;
+	//to resolve memory rewrite after destruct
+	bool* heart_beat_exist = 0;
+	bool* team_beat_exist = 0;
 
 	// -1 ==> N/A   -2 ==> -   -99 ==> HOST
-	int ping = 10;
+	int ping = -2;
 	unsigned int ID = 0;
 	Room& room;
 	boost::asio::ip::tcp::socket& sock;
@@ -54,7 +57,7 @@ public:
 	bool isNull = 1;
 	bool isRandy = 0;
 	int site = -1;
-	int team = 1;
+	int team = 0;
 	int credits = 4000;
 	bool controlable = 1;
 	bool sharedControl = 1;
@@ -81,7 +84,7 @@ public:
 			return 1;
 		}
 	}
-	void sendServerInfo();
+	void sendServerInfo(bool);
 	bool getPlayerInfo(IPacket& ipac);
 	void heart_beat();
 	void team_beat();

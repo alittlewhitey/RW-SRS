@@ -29,10 +29,10 @@ struct Room{
 
 	//Room context
 	std::string mapName = "Crossing Large (10p)";
-	std::string unitPath = "./gameData/assets/units";
 	std::string game_mode = "skirmishMap";
 	std::string state = "battleroom";
 	std::string created_by = "RW_SRS";
+
 
 	int maxPlayer = 20;
 	int game_version = 176;
