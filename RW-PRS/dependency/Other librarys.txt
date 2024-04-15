@@ -1,0 +1,2 @@
+libboost-all-dev
+zlib1g zlib1g-dev
