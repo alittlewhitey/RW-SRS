@@ -23,7 +23,7 @@
 
 #ifndef SRS_PLAYER
 #define SRS_PLAYER
-
+#include"packet.hpp"
 
 struct Room;
 class Player{

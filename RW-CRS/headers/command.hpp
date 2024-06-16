@@ -22,6 +22,11 @@
 
 #ifndef SRS_COMMAND
 #define SRS_COMMAND
+#include<map>
+#include<string>
+#include<iostream>
+#include<sstream>
+#include"player.hpp"
 
 std::map<std::string,int> commands{
     {"afk",1},

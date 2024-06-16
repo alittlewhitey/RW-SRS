@@ -25,8 +25,9 @@
 #ifndef SRS_SERVER
 #define SRS_SERVER
 
-
-
+#include<iostream>
+#include<map>
+#include"room.hpp"
 struct Server{
     std::map<int,std::unique_ptr<Room>> rooms;
     std::ostream& out = std::cout;

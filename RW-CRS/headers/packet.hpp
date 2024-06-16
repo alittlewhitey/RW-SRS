@@ -24,6 +24,8 @@
 #define SRS_PACKET
 // #include<codecvt>
 // #include<locale>
+#include<string>
+#include<boost/asio.hpp>
 
 enum PacketType{
     //Server Commands

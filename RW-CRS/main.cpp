@@ -19,6 +19,11 @@
 
 
 #include"including.hpp"
+#include<boost/asio.hpp>
+#include<iostream>
+#include<fstream>
+#include"headers/programVar.hpp"
+#include"headers/server.hpp"
 
 using namespace std;
 using namespace boost::asio;

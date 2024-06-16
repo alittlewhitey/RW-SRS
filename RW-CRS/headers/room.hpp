@@ -22,6 +22,15 @@
 
 #ifndef SRS_ROOM
 #define SRS_ROOM
+#include<vector>
+#include<string>
+#include<iostream>
+#include<thread>
+#include<boost/asio.hpp>
+#include<memory>
+#include"player.hpp"
+#include"programVar.hpp"
+#include "open.hpp"
 struct Room{
 	enum State{battleroom,ingame};
 
