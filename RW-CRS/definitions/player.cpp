@@ -19,13 +19,14 @@
 
 
 #pragma once
-#include"../headers/player.hpp"
+#include"../include/player.hpp"
 
 Player::Player(boost::asio::ip::tcp::socket& sock,Room& room):sock(sock),ep(sock.remote_endpoint()),room(room),site(room.getVoidSite()){
 
 	this->ID = IDcounter;
 	++IDcounter;
 }
+
 Player::~Player(){
 	if(!heart_beat_thread.request_stop()){
 		err << __FILE__ << '\t' << __LINE__ << '\t' << "heart beat thread had not stoped" << std::endl;
@@ -285,4 +286,10 @@ void Player::run(){
 	}catch(std::exception e){
 		err << __FILE__ << '\t' << __LINE__ << '\t' << e.what() << std::endl;
 	}
+}
+
+
+
+Player_ptr make_player(boost::asio::ip::tcp::socket& sock,Room& room){
+	return Player_ptr(new Player(sock,room));
 }

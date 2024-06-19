@@ -19,7 +19,7 @@
 
 
 #pragma once
-#include"../headers/room.hpp"
+#include"../include/room.hpp"
 
 Room::~Room(){
 	is_run = 0;
@@ -42,7 +42,7 @@ Room::~Room(){
 	}
 
 	for(auto& a : players)
-		a = 0;
+		a = nullptr;
 	for(auto& a: roomThread)
 		if(a.get_stop_source().stop_possible()){
 			a.request_stop();
@@ -58,18 +58,18 @@ void Room::sendChatBroadCast(const std::string& msg,const std::string& sendBy,in
 void Room::sendSystemBroadCast(const std::string& msg){
 	sendChatBroadCast(msg,"SERVER",5);
 }
-const Player* Room::find(unsigned int ID){
+Player_ptr Room::find(unsigned int ID){
 	for(auto& p : players){
 		if(p->ID == ID){
-			return p.get();
+			return p;
 		}
 	}
 	return 0;
 }
-const Player* Room::find_site(unsigned int site){
+Player_ptr Room::find_site(unsigned int site){
 	for(auto& p : players){
 		if(p->site == site){
-			return p.get();
+			return p;
 		}
 	}
 	return 0;
@@ -99,15 +99,15 @@ try{
 	roomThread[roomThread.size()-1].detach();
 
 	
-	players.push_back(std::unique_ptr<Player>(new Player(sock,*this)));
+	players.push_back(make_player(sock,*this));
 	auto& p = players[players.size()-1];
-	if(p!=0)
+	if(p!=nullptr)
 		p->run();
 		
 	if(!is_run){
 		return;
 	}
-	p = 0;
+	p.remove_all();
 	//socket不能立即被析构
 	usleep(200000);
 }catch(boost::system::system_error e){
@@ -161,8 +161,8 @@ void Room::shell_handle(){
 			}
 			int site = std::stoi(args[0]);
 			std::string reason = args[1];
-			if(const Player* p = find_site(site)){
-				const_cast<Player*>(p)->sendKick(reason);
+			if(Player_ptr p = find_site(site)){
+				p->sendKick(reason);
 			}else{
 				out << "no player in this site" << std::endl;
 				for(auto& a : players){
@@ -203,8 +203,8 @@ void Room::shell_handle(){
 				break;
 			}
 			int site = std::stoi(args[0]);
-			if(const Player* p = find_site(site)){
-				const_cast<Player*>(p)->isAdmin = 1;
+			if(Player_ptr p = find_site(site)){
+				p->isAdmin = 1;
 			}else{
 				out << "no player in this site" << std::endl;
 			}
@@ -215,8 +215,8 @@ void Room::shell_handle(){
 				break;
 			}
 			int site = std::stoi(args[0]);
-			if(const Player* p = find_site(site)){
-				const_cast<Player*>(p)->isAdmin = 0;
+			if(Player_ptr p = find_site(site)){
+				p->isAdmin = 0;
 			}else{
 				out << "no player in this site" << std::endl;
 			}

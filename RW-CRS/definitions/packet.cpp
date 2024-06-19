@@ -19,14 +19,11 @@
 
 
 #pragma once
-#include"../headers/packet.hpp"
+#include"../include/packet.hpp"
 template<typename T>
 Packet::PacketData::DataIterator::operator T(){
 	//if(index + sizeof(T)>=pData.data.size()){
 	if(index + sizeof(T)>pData.data.size()){
-
-		std::cout << index + sizeof(T) << std::endl;
-		std::cout << pData.data.size() << std::endl;
 		throw std::runtime_error("out of packet");
 
 	}
@@ -43,7 +40,6 @@ Packet::PacketData::DataIterator Packet::PacketData::operator[](int index){
 template<typename T>
 void Packet::PacketData::push_back(const T t){
 	for(char i = 0;i!=sizeof(t);++i){
-		//TODO:
 		data.push_back(*((char*)(&t)+sizeof(t)-1-i));
 	}
 }

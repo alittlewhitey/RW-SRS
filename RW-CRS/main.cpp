@@ -19,11 +19,6 @@
 
 
 #include"including.hpp"
-#include<boost/asio.hpp>
-#include<iostream>
-#include<fstream>
-#include"headers/programVar.hpp"
-#include"headers/server.hpp"
 
 using namespace std;
 using namespace boost::asio;
@@ -33,7 +28,7 @@ using boost::asio::ip::tcp;
 Server server;
 
 int main(){
-	cout << "\nThis program is RW-CRS\nCopyright (C) 2023  LittleWhite\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <https://www.gnu.org/licenses/>.\n" << endl;
+	cout << "\nThis program is RW-CRS\nCopyright (C) 2023-2024  LittleWhite\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <https://www.gnu.org/licenses/>.\n" << endl;
 	try{
 		server.shell_handle();
 	}catch(exception e){

@@ -38,14 +38,15 @@
 #include"dependency/cpp_httpapi/httplib.h"
 #include"dependency/gzip/compress.hpp"
 
-#include"headers/programVar.hpp"
-#include"headers/md5.h"
-#include"headers/open.hpp"
-#include"headers/packet.hpp"
-#include"headers/room.hpp"
-#include"headers/server.hpp"
-#include"headers/player.hpp"
-#include"headers/command.hpp"
+#include"include/programVar.hpp"
+#include"include/md5.h"
+#include"include/open.hpp"
+#include"include/packet.hpp"
+#include"include/player.hpp"
+#include"include/room.hpp"
+#include"include/server.hpp"
+//#include"include/group.hpp"
+#include"include/command.hpp"
 
 
 #include"definitions/md5.cpp"
