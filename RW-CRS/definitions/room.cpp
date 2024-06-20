@@ -114,7 +114,7 @@ try{
 		}
 	}
 	//socket不能立即被析构
-	usleep(200000);
+	usleep(2000);
 }catch(boost::system::system_error e){
 	err << __FILE__ << '\t' << __LINE__ << '\t' << e.what() << '\t' << e.code() << std::endl;
 }catch(std::exception e){

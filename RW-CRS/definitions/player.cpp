@@ -223,7 +223,7 @@ void Player::handlePacket(PacketType type,const IPacket& p){
 			if(room.players.size() == 1)
 				this->isAdmin = 1;
 			room.sendSystemBroadCast(name + "进入了房间.");
-			sendSystemMessage("输入.help获得命令信息")
+			sendSystemMessage("输入.help获得命令信息");
 		}
 	}break;
 	case PACKET_ADD_CHAT:{
@@ -249,7 +249,7 @@ void Player::handlePacket(PacketType type,const IPacket& p){
 
 void Player::run(){
 	try{
-	sleep(5);
+	//sleep(5);
 	while(room.is_run&is_alive){
 		unsigned char buffer[1024];
 		for(auto a : buffer){
