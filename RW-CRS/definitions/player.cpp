@@ -222,7 +222,8 @@ void Player::handlePacket(PacketType type,const IPacket& p){
 		}else{
 			if(room.players.size() == 1)
 				this->isAdmin = 1;
-			sendSystemMessage(name + "进入了房间.");
+			room.sendSystemBroadCast(name + "进入了房间.");
+			sendSystemMessage("输入.help获得命令信息")
 		}
 	}break;
 	case PACKET_ADD_CHAT:{
@@ -235,7 +236,7 @@ void Player::handlePacket(PacketType type,const IPacket& p){
 	}break;
 	case PACKET_DISCONNECT:{
 		is_alive = 0;
-		sendSystemMessage(name + "离开了房间.");
+		room.sendSystemBroadCast(name + "离开了房间.");
 	}break;
 	case PACKET_POPUP_RESPONSE:{
 		for(int i = 0;i!= 5;++i)

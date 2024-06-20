@@ -100,7 +100,7 @@ try{
 
 	
 	players.push_back(make_player(sock,*this));
-	auto& p = players[players.size()-1];
+	Player_ptr& p = players[players.size()-1];
 	if(p!=nullptr)
 		p->run();
 		
@@ -108,6 +108,11 @@ try{
 		return;
 	}
 	p.remove_all();
+	for(int i = 0;i!=players.size();++i){
+		if(&players[i] == &p){
+			players.erase(players.begin()+i);
+		}
+	}
 	//socket不能立即被析构
 	usleep(200000);
 }catch(boost::system::system_error e){
