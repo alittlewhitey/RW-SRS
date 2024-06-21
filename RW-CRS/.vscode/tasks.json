@@ -8,6 +8,7 @@
                 "-fdiagnostics-color=always",
                 // "-pg",
                 // "-O3",
+                "-pg",
                 "-g",
                 "${workspaceFolder}/main.cpp",
                 "-std=c++2a",

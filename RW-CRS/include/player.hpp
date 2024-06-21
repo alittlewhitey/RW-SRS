@@ -117,14 +117,16 @@ class Player_ptr{
 	Player* player = nullptr;
 	std::vector<Player_ptr*>* ptrs = new std::vector<Player_ptr*>();
 	void remove_ptr_from_ptrs(Player_ptr & ptr){
-		if(ptrs->size() <= 1&&ptr.player != nullptr){
+		auto size = ptrs->size();
+		if(size <= 1&&ptr.player != nullptr){
 			delete ptr.player;
 			ptr.player = nullptr;
 			return;
-		}else if(ptrs->size() >1){
-			for(int i = 0;i!=ptrs->size();++i){
+		}else if(size >1){
+			for(int i = 0;i!=size;++i){
 				if((*ptrs)[i] == &ptr){
 					ptrs->erase(ptrs->begin() + i);
+					break;
 				}
 			}
 			ptr.player = nullptr;
@@ -154,9 +156,11 @@ class Player_ptr{
 
 			delete ptrs;//It's useful
 		}else{
-			for(int i = 0;i!= ptrs->size();++i){
+			auto size = ptrs->size();
+			for(int i = 0;i!= size;++i){
 				if((*ptrs)[i] == this){
 					ptrs->erase(ptrs->begin()+i);
+					break;
 				}
 			}
 		}
@@ -202,7 +206,8 @@ public:
 		return 1;
 	}
 	void remove_all(){
-		for(int i = 0;i!=ptrs->size();++i){
+		auto size = ptrs->size();
+		for(int i = 0;i!=size;++i){
 			if((*ptrs)[i] != this){
 				remove_ptr_from_ptrs(*(*ptrs)[i]);
 				(*ptrs)[i]->player = nullptr;

@@ -108,9 +108,12 @@ try{
 		return;
 	}
 	p.remove_all();
-	for(int i = 0;i!=players.size();++i){
+
+	auto size = players.size();
+	for(int i = 0;i!=size;++i){
 		if(&players[i] == &p){
 			players.erase(players.begin()+i);
+			break;
 		}
 	}
 	//socket不能立即被析构

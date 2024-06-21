@@ -82,7 +82,8 @@ void OPacket::write_Gzip(const std::string& key,const OPacket& data){
 	this->write(key);
 	this->write<int>(data.size);
 	std::string enc = gzip::compress(data.pData.data.data(),data.pData.data.size(),Z_DEFAULT_COMPRESSION);
-	for(int i = 0;i!= enc.size();++i){
+	auto size = enc.size();
+	for(int i = 0;i!= size;++i){
 		this->write<char>(enc[i]);
 	}
 

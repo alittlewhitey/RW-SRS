@@ -96,7 +96,8 @@ void handleClientCommand(std::string commandLine,Player& player){
         }break;
         case 2:{
             std::string tempStr = "[Team] ";
-            for(int i = 0;i != args.size();++i){
+            auto size = args.size();
+            for(int i = 0;i != size;++i){
                 tempStr += args[i];
                 tempStr += ' ';
             }
