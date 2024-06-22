@@ -188,12 +188,12 @@ public:
 		return *this;
 	}
 	bool operator==(const Player_ptr& ptr){
-		if(this == &ptr)
+		if(this->player == ptr.player)
 			return 1;
 		return 0;
 	}
 	bool operator!=(const Player_ptr& ptr){
-		if(this == &ptr)
+		if(this->player == ptr.player)
 			return 0;
 		return 1;
 	}

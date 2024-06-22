@@ -98,26 +98,23 @@ try{
 	roomThread.push_back(std::jthread([this](){this->acceptClient();}));
 	roomThread[roomThread.size()-1].detach();
 
-	
-	players.push_back(make_player(sock,*this));
-	Player_ptr& p = players[players.size()-1];
+	Player_ptr p = make_player(sock,*this);
+	players.push_back(p);
 	if(p!=nullptr)
 		p->run();
 		
 	if(!is_run){
 		return;
 	}
-	p.remove_all();
 
 	auto size = players.size();
 	for(int i = 0;i!=size;++i){
-		if(&players[i] == &p){
+		if(players[i] == p){
 			players.erase(players.begin()+i);
 			break;
 		}
 	}
-	//socket不能立即被析构
-	usleep(2000);
+	p.remove_all();
 }catch(boost::system::system_error e){
 	err << __FILE__ << '\t' << __LINE__ << '\t' << e.what() << '\t' << e.code() << std::endl;
 }catch(std::exception e){
